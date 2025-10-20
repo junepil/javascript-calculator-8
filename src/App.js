@@ -14,7 +14,9 @@ class App {
   sumNumbers(numbers) {
     let sum = 0;
 
-    for(const num of numbers) {
+    for (const num of numbers) {
+      if (num <= 0 || isNaN(num))
+        throw Error(`[ERROR] ${num} is not a positive number`);
       sum += num ;
     }
 
