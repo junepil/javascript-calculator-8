@@ -25,13 +25,13 @@ class App {
 
   parseInput(inputString) {
     let numbers = null;
-    const seperator = "\\n";
+    const SEPERATOR = "\\n";
 
-    if (inputString.includes(seperator)) {
-      const [configString, data] = inputString.split(seperator);
-      const spliterRegex = /\/\/(.)/;
+    if (inputString.includes(SEPERATOR)) {
+      const [configString, data] = inputString.split(SEPERATOR);
+      const SPLITER_REGEX = /\/\/(.)/;
 
-      const customSpliter = configString.match(spliterRegex)[1];
+      const customSpliter = configString.match(SPLITER_REGEX)[1];
       const spliters = new RegExp(`,|:|${customSpliter}`);
       numbers = data.split(spliters);
     } else {
