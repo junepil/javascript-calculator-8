@@ -3,38 +3,39 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const inputString = await MissionUtils.Console.readLineAsync();
+
     const numbers = this.parseInput(inputString);
     const result = this.sumNumbers(numbers);
+
+    MissionUtils.Console.print(`결과 : ${result}`);
+    return;
   }
 
   sumNumbers(numbers) {
     let sum = 0;
 
-    for (const num in numbers) {
-      sum += num;
+    for(const num of numbers) {
+      sum += num ;
     }
 
     return sum;
   }
 
   parseInput(inputString) {
-    console.log(inputString);
     let numbers = null;
-    const baseSpliters = ",;";
+    const seperator = "\\n";
 
-    let customSpliter = null;
-
-    if (inputString.includes("\n")) {
-      const [configString, data] = inputString.split("\n");
+    if (inputString.includes(seperator)) {
+      const [configString, data] = inputString.split(seperator);
       const spliterRegex = /\/\/(.)/;
 
-      customSpliter = configString.match(spliterRegex)[0];
-      const spliters = new RegExp(baseSpliters + customSpliter);
+      const customSpliter = configString.match(spliterRegex)[1];
+      const spliters = new RegExp(",|:|" + customSpliter);
       numbers = data.split(spliters);
     } else {
-      numbers = inputString.split(baseSpliters);
+      numbers = inputString.split(/,|:/);
     }
-    numbers.map((n) => parseFloat(n));
+    return numbers.map(n => parseFloat(n));
   }
 }
 
