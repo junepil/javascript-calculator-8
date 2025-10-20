@@ -32,7 +32,7 @@ class App {
       const spliterRegex = /\/\/(.)/;
 
       const customSpliter = configString.match(spliterRegex)[1];
-      const spliters = new RegExp(",|:|" + customSpliter);
+      const spliters = new RegExp(`,|:|${customSpliter}`);
       numbers = data.split(spliters);
     } else {
       numbers = inputString.split(/,|:/);
